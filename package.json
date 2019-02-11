@@ -22,7 +22,9 @@
     "build-ts": "tsc",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
     "test": "jest --forceExit --coverage --verbose",
-    "postinstall": "npm run rebuild"
+    "postinstall": "npm run rebuild",
+    "heroku-db": "heroku pg:psql postgresql-lively-50325 --app softeng-register-machine",
+    "heroku-start": "git push origin heroku"
   },
   "dependencies": {
     "async": "^2.6.1",
@@ -30,12 +32,13 @@
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
+    "decimal.js": "^10.0.2",
     "dotenv": "^6.2.0",
     "errorhandler": "^1.5.0",
-    "restify": "^7.3.0",
+    "moment": "^2.22.2",
     "pg": "^7.7.1",
-    "sequelize": "^4.41.2",
-    "moment": "^2.22.2"
+    "restify": "^7.3.0",
+    "sequelize": "^4.41.2"
   },
   "devDependencies": {
     "@types/async": "^2.0.50",

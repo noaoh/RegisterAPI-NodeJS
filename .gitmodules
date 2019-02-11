@@ -1,0 +1,3 @@
+[submodule "RegisterAPIDataDefinition"]
+	path = RegisterAPIDataDefinition
+	url = https://github.com/noaoh/RegisterAPIDataDefinition
