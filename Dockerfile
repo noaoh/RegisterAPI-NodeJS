@@ -1,0 +1,4 @@
+FROM postgres
+WORKDIR RegisterAPIDataDefinition
+COPY RegisterAPIDataDefinition RegisterAPIDataDefinition
+EXPOSE 5432
