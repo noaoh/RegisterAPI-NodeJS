@@ -1,4 +1,3 @@
 FROM postgres
-WORKDIR RegisterAPIDataDefinition
-COPY RegisterAPIDataDefinition RegisterAPIDataDefinition
+COPY RegisterAPIDataDefinition/Product.sql /docker-entrypoint-initdb.d/Product.sql
 EXPOSE 5432
