@@ -6,6 +6,7 @@ import { ParameterLookup, ErrorCodeLookup } from "./lookups/stringLookup";
 import * as ProductCreateCommand from "./commands/products/productCreateCommand";
 import * as ProductDeleteCommand from "./commands/products/productDeleteCommand";
 import * as ProductUpdateCommand from "./commands/products/productUpdateCommand";
+import * as ProductClearCommand from "./commands/products/productClearCommand";
 import { CommandResponse, Product, ProductSaveRequest } from "./typeDefinitions";
 
 export let queryProducts = (req: restify.Request, res: restify.Response, next: restify.Next) => {
@@ -100,6 +101,20 @@ export let deleteProduct = (req: restify.Request, res: restify.Response, next: r
 				(error.status || 500),
 				(error.message || ErrorCodeLookup.EC1003));
 
+			return next();
+		});
+};
+
+export let clearProducts = (req: restify.Request, res: restify.Response, next: restify.Next) => {
+	ProductClearCommand.execute()
+		.then((productClearCommandResponse: CommandResponse<void>) => {
+			res.send(productClearCommandResponse.status);
+
+			return next();
+		}, (error: any) => {
+			res.send(
+				(error.status || 500),
+				(error.message || ErrorCodeLookup.EC1003));
 			return next();
 		});
 };

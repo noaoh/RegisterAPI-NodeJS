@@ -16,7 +16,7 @@
   "license": "MIT",
   "scripts": {
     "rebuild": "npm run clean && npm run build",
-    "build": "npm run build-ts && npm run tslint && docker build -t postgres-test .",
+    "build": "npm run build-ts && npm run tslint",
     "start": "node dist/server.js",
     "clean": "rimraf dist",
     "build-ts": "tsc",
@@ -25,7 +25,8 @@
     "postinstall": "npm run rebuild",
     "heroku-db": "heroku pg:psql postgresql-lively-50325 --app softeng-register-machine",
     "test-db": "docker run -d -p 5432:5432 postgres-test",
-    "heroku-start": "git push origin heroku"
+    "heroku-start": "git push origin heroku",
+    "docker-build": "docker build -t postgres-test ."
   },
   "dependencies": {
     "async": "^2.6.1",
