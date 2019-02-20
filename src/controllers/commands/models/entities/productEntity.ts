@@ -8,10 +8,10 @@ const modelName: string = "Product";
 
 export interface ProductAttributes {
 	id?: string;
-	count: number;
+	count?: number;
 	createdOn?: Date;
-	lookupCode: string;
-	price: Decimal;
+	lookupCode?: string;
+	price?: Decimal;
 }
 
 export interface ProductInstance extends Sequelize.Instance<ProductAttributes> {
