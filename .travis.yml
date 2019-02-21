@@ -1,0 +1,10 @@
+env:
+  - DATABASE_URL = ""
+
+services:
+  - postgresql
+
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -f 'RegisterAPIDataDefinition/Product.sql' -d travis_ci_test -U postgres
+

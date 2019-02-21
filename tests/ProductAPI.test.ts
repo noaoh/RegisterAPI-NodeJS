@@ -17,121 +17,8 @@ const generateRecords = (records: number): void => {
 };
 */
 
-/*
 beforeEach(() => {
-	ProductRepository.clear();
-});
-*/
-
-test("ProductRepository queryById not found", () => {
-	expect(1 + 1).toBe(2);
-});
-
-test("ProductRepository queryById found", () => {
-	expect(1 + 1).toBe(2);
-});
-
-test("ProductRepository queryByLookupCode not found", () => {
-	/*
-	expect(1 + 1).toBe(2);
-	const lookupCode: string = "-111111";
-	const notRealProduct: ProductAttributes = {
-		"count": 10,
-		"price": new Decimal(66.66),
-		"lookupCode": lookupCode
-	};
-	expect(ProductRepository.queryByLookupCode(lookupCode))
-	*/
-	expect(1 + 1).toBe(2);
-});
-
-test("ProductRepository queryByLookupCode found", () => {
-	/*
-	const insertedProduct: ProductAttributes = {
-		"count": 10,
-		"price": new Decimal(66.66),
-		"lookupCode": "123456"
-	};
-
-	const expectedProduct: ProductAttributes = {
-		"count": 10,
-		"price": new Decimal(66.66),
-		"lookupCode": "123456"
-	};
-
-	ProductRepository.create(insertedProduct);
-	expect(ProductRepository.queryByLookupCode("123456")).toMatchObject(expectedProduct);
-	*/
-	expect(1 + 1).toBe(2);
-});
-
-test("ProductRepository queryAll no records found", () => {
-	expect(1 + 1).toBe(2);
-});
-
-test("ProductRepository queryAll records found", () => {
-	expect(1 + 1).toBe(2);
-});
-
-
-test("ProductRepository create default", () => {
-	/*
-	const dummyProduct: ProductAttributes = {};
-	const generatedProduct: ProductAttributes = {
-		"count": 0,
-		"price": new Decimal(0.0),
-		"lookupCode": ""
-	};
-	// The count, price, and lookupCode field of dummyProduct should match generatedProduct
-	expect(ProductRepository.create(dummyProduct)).toMatchObject(generatedProduct);
-	*/
-	expect(1 + 1).toBe(2);
-});
-
-test("ProductRepository create with attributes", () => {
-	/*
-	const insertedProduct: ProductAttributes = {
-		"count": 10,
-		"price": new Decimal(66.66),
-		"lookupCode": "123456"
-	};
-	const expectedProduct: ProductAttributes = {
-		"count": 10,
-		"price": new Decimal(66.66),
-		"lookupCode": "123456"
-	};
-
-	expect(ProductRepository.create(insertedProduct)).toMatchObject(expectedProduct);
-	*/
-});
-
-
-test("ProductRepository destroy not found", () => {
-	expect(1 + 1).toBe(2);
-});
-
-test("ProductRepository destroy found", () => {
-	/*
-	const lookupCode = "123456";
-	const insertedProduct: ProductAttributes = {
-		"count": 10,
-		"price": new Decimal(66.66),
-		"lookupCode": "123456",
-	};
-
-	ProductRepository.create(insertedProduct);
-	ProductRepository.destroy(insertedProduct);
-	expect(ProductRepository.queryByLookupCode("123456"));
-	*/
-	expect(1 + 1).toBe(2);
-});
-
-test("ProductRepository clear no records found", () => {
-	expect(1 + 1).toBe(2);
-});
-
-test("ProductRepository clear records found", () => {
-	expect(1 + 1).toBe(2);
+	fetch.resetMocks();
 });
 
 test("queryById command invalid Id", () => {
@@ -143,7 +30,16 @@ test("queryById command Product not found", () => {
 });
 
 test("queryById command Product found", () => {
-	expect(1 + 1).toBe(2);
+	const resp = {
+		"count": 2,
+		"price": 3.50,
+		"lookupCode": "",
+		"id": 42,
+		createdOn: "3"
+	};
+
+	expect(fetch).toBeCalledWith("/api/product/id/42");
+	fetch.once(JSON.stringify(resp));
 });
 
 test("queryByLookupCode command invalid LookupCode", () => {
