@@ -37,3 +37,11 @@ export let destroy = (productListEntry: ProductInstance, destroyTransaction?: Se
 			transaction: destroyTransaction
 		});
 };
+
+export let clear = (clearTransaction?: Sequelize.Transaction): Bluebird<number> => {
+	return ProductEntity.destroy(<Sequelize.InstanceDestroyOptions>{
+		where: {},
+		force: true,
+		transaction: clearTransaction
+	});
+};

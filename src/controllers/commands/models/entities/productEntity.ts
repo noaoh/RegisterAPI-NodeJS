@@ -1,4 +1,5 @@
 import Sequelize from "sequelize";
+import { Decimal } from "decimal.js";
 import { DatabaseConnection } from "../databaseConnection";
 import { DatabaseTableName } from "../constants/databaseTableNames";
 import { ProductFieldName } from "../constants/fieldNames/productFieldNames";
@@ -7,9 +8,10 @@ const modelName: string = "Product";
 
 export interface ProductAttributes {
 	id?: string;
-	count: number;
+	count?: number;
 	createdOn?: Date;
-	lookupCode: string;
+	lookupCode?: string;
+	price?: Decimal;
 }
 
 export interface ProductInstance extends Sequelize.Instance<ProductAttributes> {
@@ -17,6 +19,7 @@ export interface ProductInstance extends Sequelize.Instance<ProductAttributes> {
 	count: number;
 	createdOn: Date;
 	lookupCode: string;
+	price: Decimal;
 }
 
 export let ProductEntity: Sequelize.Model<ProductInstance, ProductAttributes> =
@@ -45,6 +48,12 @@ export let ProductEntity: Sequelize.Model<ProductInstance, ProductAttributes> =
 				field: ProductFieldName.CreatedOn,
 				type: Sequelize.DATE,
 				allowNull: true
+			},
+			price: <Sequelize.DefineAttributeColumnOptions>{
+					field: ProductFieldName.Price,
+					type: Sequelize.DECIMAL(12, 2),
+					allowNull: false,
+					defaultValue: 0
 			}
 		},
 		<Sequelize.DefineOptions<ProductInstance>>{
