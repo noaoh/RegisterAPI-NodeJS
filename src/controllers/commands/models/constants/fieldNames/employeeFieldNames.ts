@@ -1,4 +1,4 @@
-export enum ProductFieldName {
+export enum EmployeeFieldName {
 	ID = "id",
 	LastName = "lastName",
 	FirstName = "firstName",

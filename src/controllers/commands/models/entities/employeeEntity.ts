@@ -34,31 +34,57 @@ export let EmployeeEntity: Sequelize.Model<EmployeeInstance, EmployeeAttributes>
 		modelName,
 		<Sequelize.DefineModelAttributes<EmployeeAttributes>>{
 			id: <Sequelize.DefineAttributeColumnOptions>{
-				field: ProductFieldName.ID,
+				field: EmployeeFieldName.ID,
 				type: Sequelize.UUID,
 				autoIncrement: true,
 				primaryKey: true
 			},
-			lookupCode: <Sequelize.DefineAttributeColumnOptions>{
-				field: ProductFieldName.LookupCode,
+			lastName: <Sequelize.DefineAttributeColumnOptions>{
+				field: EmployeeFieldName.LastName,
 				type: Sequelize.STRING,
 				allowNull: false,
 				defaultValue: ""
 			},
-			count: <Sequelize.DefineAttributeColumnOptions>{
-				field: ProductFieldName.Count,
+			firstName: <Sequelize.DefineAttributeColumnOptions>{
+				field: EmployeeFieldName.FirstName,
+				type: Sequelize.STRING,
+				allowNull: false,
+				defaultValue: ""
+			},
+			employee_id: <Sequelize.DefineAttributeColumnOptions>{
+				field: EmployeeFieldName.EmployeeID,
 				type: Sequelize.INTEGER,
 				allowNull: false,
 				defaultValue: 0
 			},
+			active: <Sequelize.DefineAttributeColumnOptions>{
+				field: EmployeeFieldName.Active,
+				type: Sequelize.BIGINT,
+				allowNull: TRUE
+			},
+			classification: <Sequelize.DefineAttributeColumnOptions>{
+				field: EmployeeFieldName.Classification,
+				type: Sequelize.STRING,
+				allowNull: true
+			},
+			password: <Sequelize.DefineAttributeColumnOptions>{
+				field: EmployeeFieldName.Password,
+				type: Sequelize.STRING,
+				allowNull: true
+			},
 			createdOn: <Sequelize.DefineAttributeColumnOptions>{
-				field: ProductFieldName.CreatedOn,
-				type: Sequelize.DATE,
+				field: EmployeeFieldName.CreatedOn,
+				type: Sequelize.TIME,
+				allowNull: false
+			},
+			manager: <Sequelize.DefineAttributeColumnOptions>{
+				field: EmployeeFieldName.Manager,
+				type: Sequelize.UUID,
 				allowNull: true
 			}
 		},
-		<Sequelize.DefineOptions<ProductInstance>>{
+		<Sequelize.DefineOptions<EmployeeInstance>>{
 			timestamps: false,
 			freezeTableName: true,
-			tableName: DatabaseTableName.PRODUCT
+			tableName: DatabaseTableName.EMPLOYEE
 		});
