@@ -2,6 +2,9 @@ import * as ProductRepository from "../src/controllers/commands/models/repositor
 import { ProductAttributes } from "../src/controllers/commands/models/entities/productEntity";
 import { randomFloat, randomInt } from "../src/controllers/commands/helpers/helper";
 import Decimal from "decimal.js";
+// This is actually fetchMock, don't ask me why
+import { MockResponseInit } from "jest-fetch-mock";
+import { fetch as realFetch } from "cross-fetch";
 
 /*
 const generateRecords = (records: number): void => {
@@ -18,7 +21,7 @@ const generateRecords = (records: number): void => {
 */
 
 beforeEach(() => {
-	fetch.resetMocks();
+	fetchMock.resetMocks();
 });
 
 test("queryById command invalid Id", () => {
@@ -38,8 +41,9 @@ test("queryById command Product found", () => {
 		createdOn: "3"
 	};
 
-	expect(fetch).toBeCalledWith("/api/product/id/42");
-	fetch.once(JSON.stringify(resp));
+	fetchMock.mockResponseOnce(JSON.stringify(resp));
+	const req = fetchMock.once("0.0.0.0:15100/api/product/42");
+	expect(req).toEqual(resp);
 });
 
 test("queryByLookupCode command invalid LookupCode", () => {
@@ -51,7 +55,17 @@ test("queryByLookupCode command Product not found", () => {
 });
 
 test("queryByLookupCode command Product found", () => {
-	expect(1 + 1).toBe(2);
+	const resp = {
+		"id": "7a5a917c-3d3c-4224-ad73-9004df4b0506",
+		"count": "100",
+		"lookupCode": "lookupcode1",
+		"createdOn": "2019-02-25T15:04:17.",
+		"price": "1.00"
+	};
+
+	fetchMock.mockResponseOnce(JSON.stringify(resp));
+	const req = realFetch("0.0.0.0:15100/api/bylookupcode/lookupcode1");
+	expect(req).toEqual(resp);
 });
 
 test("productsQuery command no products exist", () => {
