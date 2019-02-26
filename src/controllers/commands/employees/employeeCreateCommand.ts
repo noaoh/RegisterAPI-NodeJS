@@ -1,5 +1,6 @@
 import Bluebird from "bluebird";
 import Sequelize from "sequelize";
+import Crypto from "crypto";
 import * as Helper from "../helpers/helper";
 import { ErrorCodeLookup } from "../../lookups/stringLookup";
 import * as DatabaseConnection from "../models/databaseConnection";
