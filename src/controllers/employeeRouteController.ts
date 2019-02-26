@@ -1,6 +1,6 @@
 import Bluebird from "bluebird";
 import * as restify from "restify";
-import * as EmployeesQuery from "./commands/employees/employeeQuery";
+import * as EmployeeQuery from "./commands/employees/employeeQuery";
 import * as EmployeesQuery from "./commands/employees/employeesQuery";
 import { ParameterLookup, ErrorCodeLookup } from "./lookups/stringLookup";
 import * as EmployeeCreateCommand from "./commands/employees/employeeCreateCommand";

@@ -32,3 +32,32 @@ export interface CommandResponse<T> {
 	status: number;
 	message?: string;
 }
+
+//Employee typeDefinitions
+export interface EmployeeSaveRequest {
+	id?: string;
+	lastName: string;
+	firstName: string;
+	employee_id: number;
+	classification: string;
+	password: string;
+	createdOn: string;
+	manager: string;
+	active: boolean;
+}
+
+export interface Employee {
+	id: string;
+	lastName: string;
+	firstName: string;
+	employee_id: number;
+	classification: string;
+	password: string;
+	createdOn: string;
+	manager: string;
+	active: boolean;
+}
+
+export interface EmployeeSaveResponse extends ApiResponse {
+	employee: Employee;
+}

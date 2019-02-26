@@ -1,6 +1,6 @@
 import * as restify from "restify";
 import { RouteLookup } from "../controllers/lookups/stringLookup";
-import * as EmployeeRouteController from "../controllers/employeetRouteController";
+import * as EmployeeRouteController from "../controllers/employeeRouteController";
 
 function employeeRoute(server: restify.Server) {
 	server.get({path: (RouteLookup.API + RouteLookup.Employee), version: "0.0.1"}, EmployeeRouteController.queryEmployees);
@@ -41,4 +41,4 @@ function employeeRoute(server: restify.Server) {
 	});
 }
 
-module.exports.routes = EmployeeRoute;
+module.exports.routes = employeeRoute;

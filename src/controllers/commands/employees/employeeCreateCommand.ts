@@ -11,13 +11,13 @@ const validateSaveRequest = (saveEmployeeRequest: EmployeeSaveRequest): CommandR
 	const validationResponse: CommandResponse<Employee> =
 		<CommandResponse<Employee>>{ status: 200 };
 
-	if ((saveEmployeeRequest.lookupCode == null) || (saveEmployeeRequest.lookupCode.trim() === "")) {
+	if ((saveEmployeeRequest.password == null) || (saveEmployeeRequest.password.trim() === "")) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2026;
-	} else if ((saveEmployeeRequest.count == null) || isNaN(saveEmployeeRequest.count)) {
+	} else if ((saveEmployeeRequest.employee_id == null) || isNaN(saveEmployeeRequest.employee_id)) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2027;
-	} else if (saveEmployeeRequest.count < 0) {
+	} else if (saveEmployeeRequest.employee_id < 0) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2028;
 	}
@@ -32,8 +32,8 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 	}
 
 	const employeeToCreate: EmployeeAttributes = <EmployeeAttributes>{
-		count: saveEmployeeRequest.count,
-		lookupCode: saveEmployeeRequest.lookupCode
+		employee_id: saveEmployeeRequest.employee_id,
+		password: saveEmployeeRequest.password
 	};
 
 	let createTransaction: Sequelize.Transaction;
@@ -43,7 +43,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 			createTransaction = createdTransaction;
 
 			return EmployeeRepository.queryByLookupCode(
-				saveEmployeeRequest.lookupCode,
+				saveEmployeeRequest.password,
 				createTransaction);
 		}).then((existingEmployee: (EmployeeInstance | null)): Bluebird<EmployeeInstance> => {
 			if (existingEmployee != null) {
@@ -63,7 +63,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 					id: createdEmployee.id,
 					lastName: createdEmployee.lastName,
 					firstName: createdEmployee.firstName,
-					employee_id: createdEmployee.employeeID,
+					employee_id: createdEmployee.employee_id,
 					classification: createdEmployee.classification,
 					password: createdEmployee.password,
 					createdOn: Helper.formatDate(createdEmployee.createdOn),

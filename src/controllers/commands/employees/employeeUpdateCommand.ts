@@ -14,13 +14,13 @@ const validateSaveRequest = (saveEmployeeRequest: EmployeeSaveRequest): CommandR
 	if ((saveEmployeeRequest.id == null) || (saveEmployeeRequest.id.trim() === "")) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2025;
-	} else if ((saveEmployeeRequest.lookupCode == null) || (saveEmployeeRequest.lookupCode.trim() === "")) {
+	} else if ((saveEmployeeRequest.password == null) || (saveEmployeeRequest.password.trim() === "")) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2026;
-	} else if ((saveEmployeeRequest.count == null) || isNaN(saveEmployeeRequest.count)) {
+	} else if ((saveEmployeeRequest.employee_id == null) || isNaN(saveEmployeeRequest.employee_id)) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2027;
-	} else if (saveEmployeeRequest.count < 0) {
+	} else if (saveEmployeeRequest.employee_id < 0) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2028;
 	}
@@ -51,8 +51,8 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 
 			return queriedEmployee.update(
 				<Object>{
-					count: saveEmployeeRequest.count,
-					lookupCode: saveEmployeeRequest.lookupCode
+					employee_id: saveEmployeeRequest.employee_id,
+					password: saveEmployeeRequest.password
 				},
 				<Sequelize.InstanceUpdateOptions>{ transaction: updateTransaction });
 		}).then((updatedEmployee: EmployeeInstance): Bluebird<CommandResponse<Employee>> => {
@@ -64,7 +64,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 					id: updatedEmployee.id,
 					lastName: updatedEmployee.lastName,
 					firstName: updatedEmployee.firstName,
-					employee_id: updatedEmployee.employeeID,
+					employee_id: updatedEmployee.employee_id,
 					classification: updatedEmployee.classification,
 					password: updatedEmployee.password,
 					createdOn: Helper.formatDate(updatedEmployee.createdOn),

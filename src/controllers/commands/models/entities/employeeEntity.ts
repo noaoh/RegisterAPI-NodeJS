@@ -14,7 +14,7 @@ export interface EmployeeAttributes {
 	password: string;
 	createdOn: Date;
 	manager: string;
-	active: bool;
+	active: boolean;
 }
 
 export interface EmployeeInstance extends Sequelize.Instance<EmployeeAttributes> {
@@ -26,7 +26,7 @@ export interface EmployeeInstance extends Sequelize.Instance<EmployeeAttributes>
 	password: string;
 	createdOn: Date;
 	manager: string;
-	active: bool;
+	active: boolean;
 }
 
 export let EmployeeEntity: Sequelize.Model<EmployeeInstance, EmployeeAttributes> =
@@ -60,7 +60,7 @@ export let EmployeeEntity: Sequelize.Model<EmployeeInstance, EmployeeAttributes>
 			active: <Sequelize.DefineAttributeColumnOptions>{
 				field: EmployeeFieldName.Active,
 				type: Sequelize.BIGINT,
-				allowNull: TRUE
+				allowNull: true
 			},
 			classification: <Sequelize.DefineAttributeColumnOptions>{
 				field: EmployeeFieldName.Classification,
@@ -74,7 +74,7 @@ export let EmployeeEntity: Sequelize.Model<EmployeeInstance, EmployeeAttributes>
 			},
 			createdOn: <Sequelize.DefineAttributeColumnOptions>{
 				field: EmployeeFieldName.CreatedOn,
-				type: Sequelize.TIME,
+				type: Sequelize.DATE,
 				allowNull: false
 			},
 			manager: <Sequelize.DefineAttributeColumnOptions>{
