@@ -14,7 +14,7 @@ export enum RouteLookup {
 	Product = "/product",
 	ByLookupCode = "/bylookupcode",
 
-	//Employee
+	// Employee
 	Employee = "/employee",
 
 	// Parameters
