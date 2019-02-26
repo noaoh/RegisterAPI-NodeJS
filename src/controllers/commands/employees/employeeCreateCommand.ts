@@ -7,6 +7,10 @@ import * as EmployeeRepository from "../models/repositories/employeeRepository";
 import { CommandResponse, Employee, EmployeeSaveRequest } from "../../typeDefinitions";
 import { EmployeeInstance, EmployeeAttributes } from "../models/entities/employeeEntity";
 
+// Create Hah for password
+const hash = crypto.createHash('sha256');
+const password = hash.update(password).digest('hex');
+
 const validateSaveRequest = (saveEmployeeRequest: EmployeeSaveRequest): CommandResponse<Employee> => {
 	const validationResponse: CommandResponse<Employee> =
 		<CommandResponse<Employee>>{ status: 200 };
