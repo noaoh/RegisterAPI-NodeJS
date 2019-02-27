@@ -33,7 +33,7 @@ export interface CommandResponse<T> {
 	message?: string;
 }
 
-//Employee typeDefinitions
+// Employee typeDefinitions
 export interface EmployeeSaveRequest {
 	id?: string;
 	lastName: string;
