@@ -1,11 +1,11 @@
 export enum EmployeeFieldName {
 	ID = "id",
-	LastName = "lastName",
-	FirstName = "firstName",
+	LastName = "lastname",
+	FirstName = "firstname",
 	EmployeeID = "employee_id",
 	Classification = "classification",
 	Password = "password",
-	CreatedOn = "createdOn",
+	CreatedOn = "createdon",
 	Manager = "manager",
 	Active = "active"
 }
