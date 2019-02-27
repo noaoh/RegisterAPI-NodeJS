@@ -24,4 +24,16 @@ To start via the terminal navigate to the source code directory and run the foll
  ### Get a product by record ID
  `curl -i -s -X GET https://uarkregservnodejsapi.herokuapp.com/api/product/3879320d-146d-4a81-a91e-f1b9e909ed0d`
  ### Get a product by lookup code
- `curl -i -s -X GET https://uarkregservnodejsapi.herokuappc.om/api/product/bylookupcode/lookupcode1`
+ `curl -i -s -X GET https://uarkregservnodejsapi.herokuapp.com/api/product/bylookupcode/lookupcode1`
+ 
+ ## Employee API
+ ### Create an employee
+ ### Update an existing employee by UUID
+ ### Update an existing employee by employee_id
+ ### Delete all existing employees
+ `curl -i -s -X DELETE https://uarkregservenodejsapi.herokuapp.com/api/employee`
+ ### Get all employees
+ `curl -i -s -X GET https://uarkregservenodenjsapi.herokuapp.com/api/employee`
+ ### Get an employee by UUID
+ ``
+ ### Get an employee by employee_id 
