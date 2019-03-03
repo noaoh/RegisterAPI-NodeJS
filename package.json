@@ -24,7 +24,7 @@
     "test": "jest",
     "postinstall": "npm run rebuild",
     "heroku-db": "heroku pg:psql postgresql-lively-50325 --app softeng-register-machine",
-    "test-db": "docker run -d -p 5432:5432 postgres-test",
+    "test-db": "docker run -d -p 5432:5432 postgres-test && export DATABASE_URL='postgresql://postgres@0.0.0.0:5432/postgres'",
     "heroku-start": "git push origin heroku",
     "docker-build": "docker build -t postgres-test ."
   },
