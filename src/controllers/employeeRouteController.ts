@@ -43,8 +43,8 @@ export let queryEmployeeById = (req: restify.Request, res: restify.Response, nex
 		});
 };
 
-export let queryEmployeeByLookupCode = (req: restify.Request, res: restify.Response, next: restify.Next) => {
-	EmployeeQuery.queryByLookupCode(req.params[ParameterLookup.EmployeeLookupCode])
+export let queryEmployeeByEmployeeID = (req: restify.Request, res: restify.Response, next: restify.Next) => {
+	EmployeeQuery.queryByEmployeeID(req.params[ParameterLookup.EmployeeLookupCode])
 		.then((employeeQueryCommandResponse: CommandResponse<Employee>) => {
 			res.send(
 				employeeQueryCommandResponse.status,

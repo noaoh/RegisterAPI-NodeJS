@@ -43,15 +43,16 @@ export let queryById = (recordId?: string): Bluebird<CommandResponse<Employee>> 
 		});
 };
 
-export let queryByLookupCode = (employeeLookupCode?: string): Bluebird<CommandResponse<Employee>> => {
-	if (!employeeLookupCode || (employeeLookupCode.trim() === "")) {
+export let queryByEmployeeID = (employeeID: string): Bluebird<CommandResponse<Employee>> => {
+	const realEmployeeID = Number(employeeID);
+	if (realEmployeeID < 0 || realEmployeeID == null || realEmployeeID == NaN) {
 		return Bluebird.reject(<CommandResponse<Employee>>{
 			status: 422,
 			message: ErrorCodeLookup.EC2026
 		});
 	}
 
-	return EmployeeRepository.queryByLookupCode(employeeLookupCode)
+	return EmployeeRepository.queryByEmployeeID(realEmployeeID)
 		.then((existingEmployee: (EmployeeInstance | null)): Bluebird<CommandResponse<Employee>> => {
 			if (!existingEmployee) {
 				return Bluebird.reject(<CommandResponse<Employee>>{

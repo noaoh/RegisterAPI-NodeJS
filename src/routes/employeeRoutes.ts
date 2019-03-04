@@ -11,9 +11,9 @@ function employeeRoute(server: restify.Server) {
 	}, EmployeeRouteController.queryEmployeeById);
 
 	server.get({
-		path: (RouteLookup.API + RouteLookup.Employee + RouteLookup.ByLookupCode + RouteLookup.EmployeeLookupCodeParameter),
+		path: (RouteLookup.API + RouteLookup.Employee + RouteLookup.ByEmployeeID + RouteLookup.EmployeeLookupCodeParameter),
 		version: "0.0.1"
-	}, EmployeeRouteController.queryEmployeeByLookupCode);
+	}, EmployeeRouteController.queryEmployeeByEmployeeID);
 
 	server.post({
 		path: (RouteLookup.API + RouteLookup.Employee),

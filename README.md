@@ -35,5 +35,6 @@ To start via the terminal navigate to the source code directory and run the foll
  ### Get all employees
  `curl -i -s -X GET https://uarkregservenodenjsapi.herokuapp.com/api/employee`
  ### Get an employee by UUID
- ``
+ `curl -i -s -X GET https://uarkregservenodenjsapi.herokuapp.com/api/employee/15a5cb61-5651-47ba-80d7-cdd61f38716e`
  ### Get an employee by employee_id 
+ `curl -i -s -X GET https://uarkregservenodenjsapi.herokuapp.com/api/employee/byemployeeid/12345`

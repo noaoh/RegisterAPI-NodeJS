@@ -10,10 +10,10 @@ export let queryById = (id: string, queryTransaction?: Sequelize.Transaction): B
 	});
 };
 
-export let queryByLookupCode = (lookupCode: string, queryTransaction?: Sequelize.Transaction): Bluebird<EmployeeInstance | null> => {
+export let queryByEmployeeID = (employeeID: number, queryTransaction?: Sequelize.Transaction): Bluebird<EmployeeInstance | null> => {
 	return EmployeeEntity.findOne(<Sequelize.FindOptions<EmployeeAttributes>>{
 		transaction: queryTransaction,
-		where: <Sequelize.WhereOptions<EmployeeAttributes>>{ lookupCode: lookupCode }
+		where: <Sequelize.WhereOptions<EmployeeAttributes>>{ employee_id: employeeID }
 	});
 };
 

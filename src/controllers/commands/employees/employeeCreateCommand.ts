@@ -47,8 +47,8 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 		.then((createdTransaction: Sequelize.Transaction): Bluebird<EmployeeInstance | null> => {
 			createTransaction = createdTransaction;
 
-			return EmployeeRepository.queryByLookupCode(
-				saveEmployeeRequest.password,
+			return EmployeeRepository.queryByEmployeeID(
+				saveEmployeeRequest.employee_id,
 				createTransaction);
 		}).then((existingEmployee: (EmployeeInstance | null)): Bluebird<EmployeeInstance> => {
 			if (existingEmployee != null) {
