@@ -7,6 +7,11 @@ import * as EmployeeRepository from "../models/repositories/employeeRepository";
 import { CommandResponse, Employee, EmployeeSaveRequest } from "../../typeDefinitions";
 import { EmployeeInstance, EmployeeAttributes } from "../models/entities/employeeEntity";
 
+// Create Hah for password
+const crypto = require("crypto");
+const hash = crypto.createHash("sha256");
+// password = hash.update(password).digest("hex");
+
 const validateSaveRequest = (saveEmployeeRequest: EmployeeSaveRequest): CommandResponse<Employee> => {
 	const validationResponse: CommandResponse<Employee> =
 		<CommandResponse<Employee>>{ status: 200 };
@@ -33,7 +38,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 
 	const employeeToCreate: EmployeeAttributes = <EmployeeAttributes>{
 		employee_id: saveEmployeeRequest.employee_id,
-		password: saveEmployeeRequest.password
+		password: hash.update(saveEmployeeRequest.password).digest("hex")
 	};
 
 	let createTransaction: Sequelize.Transaction;
