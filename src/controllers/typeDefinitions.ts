@@ -50,7 +50,7 @@ export interface Employee {
 	id: string;
 	lastName: string;
 	firstName: string;
-	employee_id: number;
+	employeeid: number;
 	classification: string;
 	password: string;
 	createdOn: string;

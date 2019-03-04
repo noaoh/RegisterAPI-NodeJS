@@ -11,6 +11,7 @@ const validateSaveRequest = (saveEmployeeRequest: EmployeeSaveRequest): CommandR
 	const validationResponse: CommandResponse<Employee> =
 		<CommandResponse<Employee>>{ status: 200 };
 
+	console.log(saveEmployeeRequest);
 	if ((saveEmployeeRequest.id == null) || (saveEmployeeRequest.id.trim() === "")) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2025;
@@ -64,7 +65,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 					id: updatedEmployee.id,
 					lastName: updatedEmployee.lastName,
 					firstName: updatedEmployee.firstName,
-					employee_id: updatedEmployee.employee_id,
+					employeeid: updatedEmployee.employee_id,
 					classification: updatedEmployee.classification,
 					password: updatedEmployee.password,
 					createdOn: Helper.formatDate(updatedEmployee.createdOn),
