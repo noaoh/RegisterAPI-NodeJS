@@ -52,7 +52,13 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 			return queriedEmployee.update(
 				<Object>{
 					employee_id: saveEmployeeRequest.employee_id,
-					password: saveEmployeeRequest.password
+					lastName: saveEmployeeRequest.lastName,
+					firstName: saveEmployeeRequest.firstName,
+					classification: saveEmployeeRequest.classification,
+					password: saveEmployeeRequest.password,
+					createdOn: saveEmployeeRequest.createdOn,
+					manager: saveEmployeeRequest.manager,
+					active: saveEmployeeRequest.active 
 				},
 				<Sequelize.InstanceUpdateOptions>{ transaction: updateTransaction });
 		}).then((updatedEmployee: EmployeeInstance): Bluebird<CommandResponse<Employee>> => {
