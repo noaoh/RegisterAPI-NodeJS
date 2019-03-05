@@ -38,9 +38,10 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 		return Bluebird.reject(validationResponse);
 	}
 
-	const hash = crypto.createHash("sha256");
+	// const hash = crypto.createHash("sha256");
 	const employeeToCreate: EmployeeAttributes = <EmployeeAttributes>{
-		password: hash.update(saveEmployeeRequest.password).digest("hex"),
+		// password: hash.update(saveEmployeeRequest.password).digest("hex"),
+		password: saveEmployeeRequest.password,
 		lastName: saveEmployeeRequest.lastName,
 		firstName: saveEmployeeRequest.firstName,
 		classification: saveEmployeeRequest.classification,
