@@ -14,7 +14,7 @@ export let api = restify.createServer({
 const cors = corsMiddleware({
 	preflightMaxAge: 5,
 	origins: ["https://pos-test-indv-dev.herokuapp.com/"],
-	allowHeaders: ["API-Token, Origin, Content-Type, X-Auth-Token"],
+	allowHeaders: ["API-Token, Origin", "Content-Type", "X-Auth-Token"],
 	exposeHeaders: []
 });
 
