@@ -53,7 +53,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 			return queriedEmployee.update(
 				<Object>{
 					employee_id: saveEmployeeRequest.employeeid,
-					lastName: saveEmplaoyeeRequest.lastName,
+					lastName: saveEmployeeRequest.lastName,
 					firstName: saveEmployeeRequest.firstName,
 					classification: saveEmployeeRequest.classification,
 					password: saveEmployeeRequest.password,
