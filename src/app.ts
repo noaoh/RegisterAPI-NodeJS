@@ -1,10 +1,10 @@
 import * as fs from "fs";
 import dotenv from "dotenv";
 import * as restify from "restify";
-import corsMiddleware = require("restify-cors-middleware");
+import corsMiddleware from "restify-cors-middleware";
 
 // Load environment variables from .env file, where API keys and passwords are configured
-dotenv.config({ path: ".env" });
+dotenv.config({path: ".env"});
 
 export let api = restify.createServer({
 	version: "0.0.1",
@@ -12,15 +12,13 @@ export let api = restify.createServer({
 });
 
 const cors = corsMiddleware({
-	preflightMaxAge: 5,
-	origins: ["https://pos-test-indv-dev.herokuapp.com/"],
-	allowHeaders: ["API-Token, Origin", "Content-Type", "X-Auth-Token"],
-	exposeHeaders: []
+	origins: ["*"],
+	allowHeaders: ["Authorization", "Content-Type"],
+	exposeHeaders: ["Authorization", "Content-Type"]
 });
 
 api.pre(cors.preflight);
 api.use(cors.actual);
-
 api.pre(restify.pre.sanitizePath());
 api.use(restify.plugins.acceptParser(api.acceptable));
 api.use(restify.plugins.bodyParser());
