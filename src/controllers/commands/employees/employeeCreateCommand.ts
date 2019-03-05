@@ -52,7 +52,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 
 	return DatabaseConnection.startTransaction()
 		.then((createdTransaction: Sequelize.Transaction): Bluebird<EmployeeInstance | null> => {
-			createTransaction = createdTransaction;
+			// createTransaction = createdTransaction;
 
 			return EmployeeRepository.queryByEmployeeID(
 				saveEmployeeRequest.employeeid,
