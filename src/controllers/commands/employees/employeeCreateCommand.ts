@@ -38,10 +38,9 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 		return Bluebird.reject(validationResponse);
 	}
 
-	// const hash = crypto.createHash("sha256");
+	const hash = crypto.createHash("sha256");
 	const employeeToCreate: EmployeeAttributes = <EmployeeAttributes>{
-		// password: hash.update(saveEmployeeRequest.password).digest("hex"),
-		password: saveEmployeeRequest.password,
+		password: hash.update(saveEmployeeRequest.password).digest("hex"),
 		lastName: saveEmployeeRequest.lastName,
 		firstName: saveEmployeeRequest.firstName,
 		classification: saveEmployeeRequest.classification,
@@ -85,7 +84,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 				}
 			});
 		}).catch((error: any): Bluebird<CommandResponse<Employee>> => {
-			if (createTransaction != null) {
+			if (createTransaction == null) {
 				createTransaction.rollback();
 			}
 
