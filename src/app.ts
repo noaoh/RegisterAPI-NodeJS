@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import dotenv from "dotenv";
 import * as restify from "restify";
-import corsMiddleware from "restify-cors-middleware";
+import corsMiddleware = require("restify-cors-middleware");
 
 // Load environment variables from .env file, where API keys and passwords are configured
 dotenv.config({ path: ".env" });
@@ -11,11 +11,11 @@ export let api = restify.createServer({
 	name: "register-api"
 });
 
-var cors = corsMiddleware({
+const cors = corsMiddleware({
 	preflightMaxAge: 5,
-	origins: ['*'],
-	allowHeaders:['X-App-Version'],
-	exposeHeaders:[]
+	origins: ["*"],
+	allowHeaders: ["X-App-Version"],
+	exposeHeaders: []
 });
 
 api.pre(cors.preflight);

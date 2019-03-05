@@ -39,12 +39,14 @@
     "errorhandler": "^1.5.0",
     "jest-cli": "^24.1.0",
     "moment": "^2.22.2",
+    "restify-cors-middleware": "^1.0.1",
     "pg": "^7.7.1",
     "restify": "^7.3.0",
     "sequelize": "^4.41.2"
   },
   "devDependencies": {
     "@types/async": "^2.0.50",
+    "@types/restify-cors-middleware": "^1.0.1",
     "@types/bcrypt-nodejs": "^0.0.30",
     "@types/bluebird": "^3.5.24",
     "@types/body-parser": "^1.17.0",
@@ -56,7 +58,6 @@
     "@types/restify": "^7.2.6",
     "@types/sequelize": "^4.27.32",
     "@types/supertest": "^2.0.7",
-    "@types/restify-cors-middleware": "^1.1.1",
     "chai": "^4.2.0",
     "jest": "^24.0.0",
     "node-sass": "^4.10.0",
