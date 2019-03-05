@@ -6,24 +6,15 @@ import { EmployeeInstance } from "../models/entities/employeeEntity";
 import * as DatabaseConnection from "../models/databaseConnection";
 import * as EmployeeRepository from "../models/repositories/employeeRepository";
 import { CommandResponse, Employee, EmployeeSaveRequest } from "../../typeDefinitions";
+import * as crypto from "crypto";
 
 const validateSaveRequest = (saveEmployeeRequest: EmployeeSaveRequest): CommandResponse<Employee> => {
 	const validationResponse: CommandResponse<Employee> =
-		<CommandResponse<Employee>>{ status: 200 };
+		<CommandResponse<Employee>>{status: 200};
 
-	console.log(saveEmployeeRequest);
-	if ((saveEmployeeRequest.id == null) || (saveEmployeeRequest.id.trim() === "")) {
-		validationResponse.status = 422;
-		validationResponse.message = ErrorCodeLookup.EC2025;
-	} else if ((saveEmployeeRequest.password == null) || (saveEmployeeRequest.password.trim() === "")) {
+	if ((saveEmployeeRequest.password == null) || (saveEmployeeRequest.password.trim() === "")) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2026;
-	} else if ((saveEmployeeRequest.employeeid == null) || isNaN(saveEmployeeRequest.employeeid)) {
-		validationResponse.status = 422;
-		validationResponse.message = ErrorCodeLookup.EC2027;
-	} else if (saveEmployeeRequest.employeeid < 0) {
-		validationResponse.status = 422;
-		validationResponse.message = ErrorCodeLookup.EC2028;
 	}
 
 	return validationResponse;
@@ -50,18 +41,18 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 				});
 			}
 
+			const hash = crypto.createHash("sha256");
 			return queriedEmployee.update(
 				<Object>{
 					employee_id: saveEmployeeRequest.employeeid,
 					lastName: saveEmployeeRequest.lastName,
 					firstName: saveEmployeeRequest.firstName,
 					classification: saveEmployeeRequest.classification,
-					password: saveEmployeeRequest.password,
-					createdOn: saveEmployeeRequest.createdOn,
+					password: hash.update(saveEmployeeRequest.password).digest("hex"),
 					manager: saveEmployeeRequest.manager,
 					active: saveEmployeeRequest.active
 				},
-				<Sequelize.InstanceUpdateOptions>{ transaction: updateTransaction });
+				<Sequelize.InstanceUpdateOptions>{transaction: updateTransaction});
 		}).then((updatedEmployee: EmployeeInstance): Bluebird<CommandResponse<Employee>> => {
 			updateTransaction.commit();
 
@@ -74,11 +65,12 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 					employeeid: updatedEmployee.employeeid,
 					classification: updatedEmployee.classification,
 					password: updatedEmployee.password,
-					createdOn: Helper.formatDate(updatedEmployee.createdOn),
 					manager: updatedEmployee.manager,
-					active: updatedEmployee.active				}
+					active: updatedEmployee.active
+				}
 			});
 		}).catch((error: any): Bluebird<CommandResponse<Employee>> => {
+			console.log(error);
 			if (updateTransaction != null) {
 				updateTransaction.rollback();
 			}
