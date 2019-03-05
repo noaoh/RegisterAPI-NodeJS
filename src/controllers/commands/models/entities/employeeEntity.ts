@@ -27,6 +27,8 @@ export interface EmployeeInstance extends Sequelize.Instance<EmployeeAttributes>
 	active: boolean;
 }
 
+
+
 export let EmployeeEntity: Sequelize.Model<EmployeeInstance, EmployeeAttributes> =
 	DatabaseConnection.define<EmployeeInstance, EmployeeAttributes>(
 		modelName,

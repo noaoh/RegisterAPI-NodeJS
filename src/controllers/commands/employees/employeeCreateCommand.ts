@@ -84,7 +84,8 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 				}
 			});
 		}).catch((error: any): Bluebird<CommandResponse<Employee>> => {
-			if (createTransaction == null) {
+			if (createTransaction != null) {
+				console.log(createTransaction);
 				createTransaction.rollback();
 			}
 
