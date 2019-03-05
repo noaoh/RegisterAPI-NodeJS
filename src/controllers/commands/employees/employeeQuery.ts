@@ -10,7 +10,7 @@ const mapEmployeeData = (queriedEmployee: EmployeeInstance): Employee => {
 		id: queriedEmployee.id,
 		lastName: queriedEmployee.lastName,
 		firstName: queriedEmployee.firstName,
-		employeeid: queriedEmployee.employee_id,
+		employeeid: queriedEmployee.employeeid,
 		classification: queriedEmployee.classification,
 		password: queriedEmployee.password,
 		createdOn: Helper.formatDate(queriedEmployee.createdOn),

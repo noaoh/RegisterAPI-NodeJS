@@ -28,9 +28,9 @@ To start via the terminal navigate to the source code directory and run the foll
  
  ## Employee API
  ### Create an employee
- `curl -i -s -H "Content-Type: application/json" -X POST -d '{"lastName": "Holt", "firstName": "Steve", "classification": "Jock", "password": "bigyeet101"}' https://uarkregservnodejsapi.herokuapp.com/api/employee` 
+ `curl -i -s -H "Content-Type: application/json" -X POST -d '{"lastName": "Holt", "firstName": "Steve", "active": "0", "classification": "Jock", "password": "bigyeet101"}' https://uarkregservnodejsapi.herokuapp.com/api/employee` 
  ### Update an existing employee by UUID
- `curl -i -s -H "Content-Type: application/json" -X PUT -d '{"id": "84b6818c-1a4d-47ad-8868-15189960e297", "employee_id": 1, "lastName": "Ever", "firstName": "Greatest", "active": "1", "classification": "Assistant to the Regional Manager", "password": "bigyeet101"}' https://uarkregservenodejsapi.herokuapp.com/api/employee/84b6818c-1a4d-47ad-8868-15189960e297-4a81-a91e-f1b9e909ed0d`
+ `curl -i -s -H "Content-Type: application/json" -X PUT -d '{"id": "84b6818c-1a4d-47ad-8868-15189960e297", "lastName": "Ever", "firstName": "Greatest", "active": "1", "classification": "Assistant to the Regional Manager", "password": "bigyeet101"}' https://uarkregservenodejsapi.herokuapp.com/api/employee/84b6818c-1a4d-47ad-8868-15189960e297-4a81-a91e-f1b9e909ed0d`
  ### Delete all existing employees
  `curl -i -s -X DELETE https://uarkregservenodejsapi.herokuapp.com/api/employee`
  ### Get all employees
