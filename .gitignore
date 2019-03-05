@@ -40,6 +40,9 @@ node_modules
 coverage
 checkstyle-result.xml
 
+# Mac files
+.DS
+
 dist/
 app/**/*.js
 app/**/*.map
