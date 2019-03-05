@@ -13,7 +13,7 @@ export let queryById = (id: string, queryTransaction?: Sequelize.Transaction): B
 export let queryByEmployeeID = (employeeID: number, queryTransaction?: Sequelize.Transaction): Bluebird<EmployeeInstance | null> => {
 	return EmployeeEntity.findOne(<Sequelize.FindOptions<EmployeeAttributes>>{
 		transaction: queryTransaction,
-		where: <Sequelize.WhereOptions<EmployeeAttributes>>{ employee_id: employeeID }
+		where: <Sequelize.WhereOptions<EmployeeAttributes>>{ employeeid: employeeID }
 	});
 };
 

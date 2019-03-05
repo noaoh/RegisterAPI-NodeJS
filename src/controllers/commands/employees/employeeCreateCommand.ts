@@ -6,10 +6,10 @@ import * as DatabaseConnection from "../models/databaseConnection";
 import * as EmployeeRepository from "../models/repositories/employeeRepository";
 import { CommandResponse, Employee, EmployeeSaveRequest } from "../../typeDefinitions";
 import { EmployeeInstance, EmployeeAttributes } from "../models/entities/employeeEntity";
+import * as crypto from "crypto";
 
-// Create Hah for password
+// Create Hash for password
 // const crypto = require("crypto");
-// const hash = crypto.createHash("sha256");
 // password = hash.update(password).digest("hex");
 
 const validateSaveRequest = (saveEmployeeRequest: EmployeeSaveRequest): CommandResponse<Employee> => {
@@ -38,8 +38,9 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 		return Bluebird.reject(validationResponse);
 	}
 
+	const hash = crypto.createHash("sha256");
 	const employeeToCreate: EmployeeAttributes = <EmployeeAttributes>{
-		password: saveEmployeeRequest.password,
+		password: hash.update(saveEmployeeRequest.password).digest("hex"),
 		lastName: saveEmployeeRequest.lastName,
 		firstName: saveEmployeeRequest.firstName,
 		classification: saveEmployeeRequest.classification,
@@ -74,7 +75,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 					id: createdEmployee.id,
 					lastName: createdEmployee.lastName,
 					firstName: createdEmployee.firstName,
-					employeeid: createdEmployee.employee_id,
+					employeeid: createdEmployee.employeeid,
 					classification: createdEmployee.classification,
 					password: createdEmployee.password,
 					createdOn: Helper.formatDate(createdEmployee.createdOn),
