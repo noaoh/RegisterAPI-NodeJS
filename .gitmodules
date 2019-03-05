@@ -1,3 +1,7 @@
 [submodule "RegisterAPIDataDefinition"]
 	path = RegisterAPIDataDefinition
 	url = https://github.com/noaoh/RegisterAPIDataDefinition
+
+[submodule "RegisterAPI-NodeJS"]
+	path = RegisterAPI-NodeJS
+	url = https://github.com/noaoh/RegisterAPI-NodeJS
