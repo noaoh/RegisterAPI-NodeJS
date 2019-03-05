@@ -48,3 +48,6 @@ app/**/*.js
 app/**/*.map
 test/**/*.js
 test/**/*.map
+
+RegisterAPI-NodeJS/*
+RegisterAPIDataDefinition/*
