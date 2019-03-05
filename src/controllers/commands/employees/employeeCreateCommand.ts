@@ -52,7 +52,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 
 	return DatabaseConnection.startTransaction()
 		.then((createdTransaction: Sequelize.Transaction): Bluebird<EmployeeInstance | null> => {
-			// createTransaction = createdTransaction;
+			createTransaction = createdTransaction;
 
 			return EmployeeRepository.queryByEmployeeID(
 				saveEmployeeRequest.employeeid,
@@ -85,7 +85,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 			});
 		}).catch((error: any): Bluebird<CommandResponse<Employee>> => {
 			if (createTransaction != null) {
-				console.log(createTransaction);
+				console.log(error);
 				createTransaction.rollback();
 			}
 
