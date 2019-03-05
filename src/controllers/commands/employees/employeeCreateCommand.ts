@@ -8,8 +8,8 @@ import { CommandResponse, Employee, EmployeeSaveRequest } from "../../typeDefini
 import { EmployeeInstance, EmployeeAttributes } from "../models/entities/employeeEntity";
 
 // Create Hah for password
-const crypto = require("crypto");
-const hash = crypto.createHash("sha256");
+// const crypto = require("crypto");
+// const hash = crypto.createHash("sha256");
 // password = hash.update(password).digest("hex");
 
 const validateSaveRequest = (saveEmployeeRequest: EmployeeSaveRequest): CommandResponse<Employee> => {
@@ -19,15 +19,16 @@ const validateSaveRequest = (saveEmployeeRequest: EmployeeSaveRequest): CommandR
 
 	if ((saveEmployeeRequest.password == null) || (saveEmployeeRequest.password.trim() === "")) {
 		validationResponse.status = 422;
-		validationResponse.message = ErrorCodeLookup.EC2026;
-	} else if ((saveEmployeeRequest.employee_id == null) || isNaN(saveEmployeeRequest.employee_id)) {
+		validationResponse.message = "Hello World 1";
+	} else if (saveEmployeeRequest.active == null) {
 		validationResponse.status = 422;
-		validationResponse.message = ErrorCodeLookup.EC2027;
-	} else if (saveEmployeeRequest.employee_id < 0) {
+		validationResponse.message = "Hello World 2";
+	} else if (saveEmployeeRequest.classification == null || saveEmployeeRequest.classification.trim() === "") {
 		validationResponse.status = 422;
-		validationResponse.message = ErrorCodeLookup.EC2028;
+		validationResponse.message = "Hello World 3";
 	}
 
+	console.log(validationResponse);
 	return validationResponse;
 };
 
@@ -38,8 +39,12 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 	}
 
 	const employeeToCreate: EmployeeAttributes = <EmployeeAttributes>{
-		employee_id: saveEmployeeRequest.employee_id,
-		password: hash.update(saveEmployeeRequest.password).digest("hex")
+		password: saveEmployeeRequest.password,
+		lastName: saveEmployeeRequest.lastName,
+		firstName: saveEmployeeRequest.firstName,
+		classification: saveEmployeeRequest.classification,
+		active: saveEmployeeRequest.active,
+		manager: saveEmployeeRequest.manager
 	};
 
 	let createTransaction: Sequelize.Transaction;
@@ -49,7 +54,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 			createTransaction = createdTransaction;
 
 			return EmployeeRepository.queryByEmployeeID(
-				saveEmployeeRequest.employee_id,
+				saveEmployeeRequest.employeeid,
 				createTransaction);
 		}).then((existingEmployee: (EmployeeInstance | null)): Bluebird<EmployeeInstance> => {
 			if (existingEmployee != null) {

@@ -18,10 +18,10 @@ const validateSaveRequest = (saveEmployeeRequest: EmployeeSaveRequest): CommandR
 	} else if ((saveEmployeeRequest.password == null) || (saveEmployeeRequest.password.trim() === "")) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2026;
-	} else if ((saveEmployeeRequest.employee_id == null) || isNaN(saveEmployeeRequest.employee_id)) {
+	} else if ((saveEmployeeRequest.employeeid == null) || isNaN(saveEmployeeRequest.employeeid)) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2027;
-	} else if (saveEmployeeRequest.employee_id < 0) {
+	} else if (saveEmployeeRequest.employeeid < 0) {
 		validationResponse.status = 422;
 		validationResponse.message = ErrorCodeLookup.EC2028;
 	}
@@ -52,7 +52,7 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 
 			return queriedEmployee.update(
 				<Object>{
-					employee_id: saveEmployeeRequest.employee_id,
+					employee_id: saveEmployeeRequest.employeeid,
 					password: saveEmployeeRequest.password
 				},
 				<Sequelize.InstanceUpdateOptions>{ transaction: updateTransaction });
