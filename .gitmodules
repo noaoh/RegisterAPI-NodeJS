@@ -1,7 +1,3 @@
 [submodule "RegisterAPIDataDefinition"]
 	path = RegisterAPIDataDefinition
-<<<<<<< HEAD
-	url = https://github.com/noaoh/RegisterAPIDataDefinition
-=======
 	url = https://github.com/3513-arm2/RegisterAPIDataDefinition.git
->>>>>>> 66430d3ad24275db5422db7ab413748646badfb3
