@@ -65,7 +65,7 @@ export enum ErrorCodeLookup {
 	EC2229 = "Please provide a valid password.",
 	EC2230 = "Please provide a valid cashier type.",
 	EC2231 = "Please provide a valid manager ID.",
-	EC2251 = "Sign in credientials are invalid"
+	EC2251 = "Sign in credentials are invalid"
 	// End general - employee
 	// End general
 }

@@ -1,4 +1,5 @@
 export enum DatabaseTableName {
 	PRODUCT = "product",
-	EMPLOYEE = "employee"
+	EMPLOYEE = "employee",
+	TRANSACTION = "transaction"
 }
