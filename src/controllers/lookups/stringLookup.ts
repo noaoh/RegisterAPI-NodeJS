@@ -18,12 +18,19 @@ export enum RouteLookup {
 	Employee = "/employee",
 	ByEmployeeID = "/byemployeeid",
 
+	// Transaction
+	Transaction = "/transaction",
+	ByTransactionID = "/bytransactionid",
+	ProductReport = "/productreport",
+
 	// Parameters
 	ProductIdParameter = "/:productId",
 	ProductLookupCodeParameter = "/:productLookupCode",
 
 	EmployeeIdParameter = "/:employeeUUID",
-	EmployeeLookupCodeParameter = "/:employeeID"
+	EmployeeLookupCodeParameter = "/:employeeID",
+
+	TransactionIDParameter = "/:transactionUUID"
 	// End parameters
 	// End product
 	// End API routing
@@ -65,9 +72,12 @@ export enum ErrorCodeLookup {
 	EC2229 = "Please provide a valid password.",
 	EC2230 = "Please provide a valid cashier type.",
 	EC2231 = "Please provide a valid manager ID.",
-	EC2251 = "Sign in credentials are invalid"
+	EC2251 = "Sign in credentials are invalid",
 	// End general - employee
+	// General - transaction
+	EC3001 = "Unable to retrieve product report."
 	// End general
+
 }
 
 // End error codes

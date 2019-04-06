@@ -14,6 +14,12 @@ export interface Product {
 	createdOn: string;
 	lookupCode: string;
 }
+
+export interface ProductReportResult {
+	lookupCode: string;
+	totalQuantity: number;
+	totalCost: number;
+}
 // End response data object definitions
 
 // API response data
