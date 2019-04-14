@@ -16,3 +16,12 @@ export let productReport = (): Bluebird<Array<any>> => {
 		" group by product.lookupcode order by SUM(transaction.totalcost) desc limit 10",
 		{type: Sequelize.QueryTypes.SELECT});
 };
+
+export let create = (newTransaction: TransactionAttributes, createTransaction?: Sequelize.Transaction): Bluebird<TransactionInstance> => {
+	return TransactionEntity.create(
+		newTransaction,
+		<Sequelize.CreateOptions>{
+			transaction: createTransaction
+		}
+	);
+};

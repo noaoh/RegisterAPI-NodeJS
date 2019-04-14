@@ -75,7 +75,14 @@ export enum ErrorCodeLookup {
 	EC2251 = "Sign in credentials are invalid",
 	// End general - employee
 	// General - transaction
-	EC3001 = "Unable to retrieve product report."
+	EC3001 = "Unable to retrieve product report.",
+	EC3002 = "Please provide a valid date.",
+	EC3003 = "Please provide a valid transaction quantity.",
+	EC3004 = "Transaction quantity may not be negative.",
+	EC3005 = "Please provide a valid product ID.",
+	EC3006 = "Please provide a valid employee ID.",
+	EC3007 = "Please provide a valid total cost.",
+	EC3012 = "Unable to save transaction."
 	// End general
 
 }

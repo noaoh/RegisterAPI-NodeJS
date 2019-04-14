@@ -45,10 +45,10 @@ export let TransactionEntity: Sequelize.Model<TransactionInstance, TransactionAt
 				allowNull: false,
 				defaultValue: 0.00
 			},
-			createdon: <Sequelize.DefineAttributeColumnOptions>{
+			createdOn: <Sequelize.DefineAttributeColumnOptions>{
 				field: TransactionFieldName.Createdon,
 				type: Sequelize.DATE,
-				allowNull: false
+				allowNull: true
 			},
 			product: <Sequelize.DefineAttributeColumnOptions>{
 				field: TransactionFieldName.Product,

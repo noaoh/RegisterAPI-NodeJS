@@ -43,3 +43,5 @@ To start via the terminal navigate to the source code directory and run the foll
  ## Transaction API
  ### Get the product report
  `curl -i -s -H https://mobile-reg.herokuapp.com/api/transaction/productreport`
+ ### Create a transaction
+ `curl -i -s -H "Content-Type: application/json" -X POST -d '{"quantity": 10, "totalcost": 4.00, "product": "5d223e83-01d3-4235-9374-a2b3bb12ff37", "employee": "92d787a4-eda0-4c93-82b7-9bb6f705cd4f"}' https://mobile-reg.herokuapp.com/api/transaction`
