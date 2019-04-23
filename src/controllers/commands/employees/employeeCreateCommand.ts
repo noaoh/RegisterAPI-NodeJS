@@ -51,24 +51,11 @@ export let execute = (saveEmployeeRequest: EmployeeSaveRequest): Bluebird<Comman
 	let createTransaction: Sequelize.Transaction;
 
 	return DatabaseConnection.startTransaction()
-		.then((createdTransaction: Sequelize.Transaction): Bluebird<EmployeeInstance | null> => {
+		.then((createdTransaction: Sequelize.Transaction): Bluebird<EmployeeInstance> => {
 			createTransaction = createdTransaction;
-
-			return EmployeeRepository.queryByEmployeeID(
-				saveEmployeeRequest.employeeid,
-				createTransaction);
-		}).then((existingEmployee: (EmployeeInstance | null)): Bluebird<EmployeeInstance> => {
-			if (existingEmployee != null) {
-				return Bluebird.reject(<CommandResponse<Employee>>{
-					status: 409,
-					message: ErrorCodeLookup.EC2029
-				});
-			}
-
 			return EmployeeRepository.create(employeeToCreate, createTransaction);
 		}).then((createdEmployee: EmployeeInstance): Bluebird<CommandResponse<Employee>> => {
 			createTransaction.commit();
-
 			return Bluebird.resolve(<CommandResponse<Employee>>{
 				status: 201,
 				data: <Employee>{
