@@ -22,6 +22,7 @@ export enum RouteLookup {
 	Transaction = "/transaction",
 	ByTransactionID = "/bytransactionid",
 	ProductReport = "/productreport",
+	EmployeeReport = "/employeereport",
 
 	// Parameters
 	ProductIdParameter = "/:productId",

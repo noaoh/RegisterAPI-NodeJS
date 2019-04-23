@@ -20,6 +20,12 @@ export interface ProductReportResult {
 	totalQuantity: number;
 	totalCost: number;
 }
+
+export interface EmployeeReportResult {
+	employeeid: number;
+	totalQuantity: number;
+	totalCost: number;
+}
 // End response data object definitions
 
 // API response data

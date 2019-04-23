@@ -16,3 +16,12 @@ export let productReport = (): Bluebird<Array<any>> => {
 		" group by product.lookupcode order by SUM(transaction.totalcost) desc limit 10",
 		{type: Sequelize.QueryTypes.SELECT});
 };
+
+export let employeeReport = (): Bluebird<Array<any>> => {
+	return DatabaseConnection.query(
+		"SELECT employee.employeeid, SUM(transaction.quantity) AS totalquantity, SUM(transaction.totalcost) AS totalcost" +
+		" from employee, transaction where employee.id = transaction.employee" +
+		" group by employee.employeeid order by SUM(transaction.totalcost) desc limit 10",
+		{type: Sequelize.QueryTypes.SELECT}
+	);
+};
